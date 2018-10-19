@@ -5,22 +5,22 @@ const MSEC_PER_DAY = MSEC_PER_HOUR * 24;
 
 // Calculate the time difference between specified time and current time
 export function getTimeDiffFromNow(timeStampStr) {
-    let now = new Date();
-    let target = new Date(timeStampStr);
+    const now = new Date();
+    const target = new Date(timeStampStr);
 
     let interval = now.getTime() - target.getTime();
 
-    let days = Math.floor(interval / MSEC_PER_DAY);
+    const days = Math.floor(interval / MSEC_PER_DAY);
     interval = interval - (days * MSEC_PER_DAY);
 
     // Calculate the hours, minutes, and seconds.  
-    let hours = Math.floor(interval / MSEC_PER_HOUR);
+    const hours = Math.floor(interval / MSEC_PER_HOUR);
     interval = interval - (hours * MSEC_PER_HOUR);
 
-    let minutes = Math.floor(interval / MSEC_PER_MINUTE);
+    const minutes = Math.floor(interval / MSEC_PER_MINUTE);
     interval = interval - (minutes * MSEC_PER_MINUTE);
 
-    let seconds = Math.floor(interval / 1000);
+    const seconds = Math.floor(interval / 1000);
 
     if(days !== 0){
         return `${days} ${days === 1 ? "day" : "days"} ago`;

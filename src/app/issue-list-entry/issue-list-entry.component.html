@@ -1,7 +1,9 @@
 <mat-list-item>
-  <mat-icon matListIcon> {{icon}} </mat-icon>
-  <a matLine href="issueUrl">{{issueTitle}}</a>
-  <span matLine>
+  <mat-icon [ngClass]="{'issue-open-icon': !closedAt, 'issue-closed-icon': closedAt}" matListIcon> 
+    {{icon}} 
+  </mat-icon>
+  <a matLine href="issueUrl"><strong>{{issueTitle}}</strong></a>
+  <span matLine class="text-gray">
     #{{issueNumber}} {{actionVerb}} {{timeDiffStr}} ago by
     <a href="https://github.com/{{user.login}}">{{user.login}}</a>
   </span>
