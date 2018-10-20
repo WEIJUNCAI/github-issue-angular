@@ -1,0 +1,117 @@
+.issue-open-icon {
+  color: #28a745;
+}
+
+.issue-closed-icon {
+  color: #cb2431;
+}
+
+.text-gray {
+  color: #586069!important;
+}
+
+mat-chip {
+  white-space: nowrap;
+}
+
+a.issue-link:hover {
+  text-decoration: none;
+  color: #3f51b5;
+}
+
+//////////////////////////////////////////////////////////
+/////              loading skeleton                  /////
+//////////////////////////////////////////////////////////
+/*
+ * Variables
+ */
+
+ :host {  
+  --card-padding: 14px;
+  --card-height: 80px;
+  --card-skeleton: linear-gradient(white var(--card-height), transparent 0);
+  
+  --avatar-size: 22px;
+  --avatar-position: var(--card-padding) var(--card-padding);
+  --avatar-skeleton: radial-gradient(circle 11px at center, lightgrey 99%, transparent 0
+  );
+  
+  --title-indent: calc(var(--card-padding) + var(--avatar-size));
+  --title-height: 22px;
+  --title-width: 80%;
+  --title-position: calc(var(--card-padding) + var(--title-indent)) var(--card-padding);
+  --title-skeleton: linear-gradient(lightgrey var(--title-height), transparent 0);
+  
+  --desc-line-indent: var(--title-indent);
+  --desc-line-height: 12px;
+  --desc-line-skeleton: linear-gradient(lightgrey var(--desc-line-height), transparent 0);
+  --desc-line-1-width: 40%;
+  --desc-line-1-position: calc(var(--card-padding) + var(--desc-line-indent)) calc(var(--card-padding) * 2 + var(--title-height));
+  --desc-line-2-width: 30%;
+  --desc-line-2-position: calc(var(--card-padding) + var(--desc-line-indent)) calc(var(--card-padding) * 3 + var(--title-height));
+  
+  --blur-width: 200px;
+  --blur-size: var(--blur-width) var(--card-height);
+}
+
+/*
+ * Card Skeleton for Loading
+ */
+
+.issue-skeleton, .issue-skeleton:hover {
+  width: 100%; //demo
+  height: var(--card-height);
+  
+  content:"";
+  display:block;  
+  cursor: default;
+
+  background-image:
+    linear-gradient(
+      90deg, 
+      rgba(lightgrey, 0) 0, 
+      rgba(lightgrey, .8) 50%, 
+      rgba(lightgrey, 0) 100%
+    ),                          //animation blur
+    var(--title-skeleton),      //title
+    var(--desc-line-skeleton),  //desc1
+    var(--desc-line-skeleton),  //desc2
+    var(--avatar-skeleton),     //avatar
+    var(--card-skeleton)        //card
+  ;
+
+  background-size:
+    var(--blur-size),
+    var(--title-width) var(--title-height),
+    var(--desc-line-1-width) var(--desc-line-height),
+    var(--desc-line-2-width) var(--desc-line-height),
+    var(--avatar-size) var(--avatar-size),
+    100% 100%
+  ;
+  
+  background-position:
+    -150% 0,                      //animation
+    var(--title-position),        //title
+    var(--desc-line-1-position),  //desc1
+    var(--desc-line-2-position),  //desc2
+    var(--avatar-position),       //avatar
+    0 0                           //card
+  ;
+
+  background-repeat: no-repeat;
+  animation: loading 1.5s infinite;
+}
+
+
+@keyframes loading {
+  to {
+    background-position:
+      350% 0,        
+      var(--title-position),  
+      var(--desc-line-1-position),
+      var(--desc-line-2-position),
+      var(--avatar-position),
+      0 0
+    ;
+  }
+}

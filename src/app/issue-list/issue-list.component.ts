@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { Issue } from '../shared/issue.model'
 import { IssueService } from '../services/issue.service';
@@ -6,16 +6,44 @@ import { IssueService } from '../services/issue.service';
 @Component({
   selector: 'app-issue-list',
   templateUrl: './issue-list.component.html',
-  styleUrls: ['./issue-list.component.css']
+  styleUrls: ['./issue-list.component.scss']
 })
 export class IssueListComponent implements OnInit {
 
-  issues : Issue[];
+  @Input() owner: string;
+  @Input() repo: string;
 
-  constructor(private issueService : IssueService) { }
+  issues: Issue[];
+  issuesLoading: boolean = true;
+
+  constructor(private issueService: IssueService) {
+    this.setInitialDummyIssues(10);
+   }
 
   ngOnInit() {
-    this.issueService.getIssues("").subscribe(data => this.issues = data);
+    this.issueService.getIssues(this.owner, this.repo)
+      .subscribe(data => {
+        this.issues = data;
+        this.issuesLoading = false;
+      });
   }
 
+  private setInitialDummyIssues(issueNumber: number) {
+    const result = new Array<Issue>(issueNumber || 0);
+    this.issues = result.fill({
+      title: "",
+      number: 0,
+      comments: 0,
+      created_at: "",
+      user: {
+        login: "",
+        avatar_url: ""
+      },
+      labels: [{
+        id: 0,
+        name: "",
+        color: ""
+      }]
+    });
+  }
 }

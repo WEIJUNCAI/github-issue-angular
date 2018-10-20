@@ -1,10 +1,26 @@
-<mat-list-item>
-  <mat-icon [ngClass]="{'issue-open-icon': !closedAt, 'issue-closed-icon': closedAt}" matListIcon> 
-    {{icon}} 
-  </mat-icon>
-  <a matLine href="issueUrl"><strong>{{issueTitle}}</strong></a>
-  <span matLine class="text-gray">
-    #{{issueNumber}} {{actionVerb}} {{timeDiffStr}} ago by
-    <a href="https://github.com/{{user.login}}">{{user.login}}</a>
-  </span>
-</mat-list-item>
+<ng-container *ngIf="!loading">
+  <mat-list-item>
+    <mat-icon [ngClass]="{'issue-open-icon': !closedAt, 'issue-closed-icon': closedAt}" matListIcon> 
+      {{icon}} 
+    </mat-icon>
+    <a matLine href="issueUrl"><strong>{{issueTitle}}</strong></a>
+    <mat-chip-list *ngIf="labels && labels.length">
+      <mat-chip *ngFor="let label of labels" color="accent">
+        <small>{{label.name}}</small>
+      </mat-chip>
+    </mat-chip-list>
+    <ng-container *ngIf="commentsNum">
+      <mat-icon>chat_bubble_outline</mat-icon>&nbsp;
+      <small><strong>{{commentsNum}}</strong></small>
+    </ng-container>
+    <span matLine class="text-gray">
+      #{{issueNumber}} {{actionVerb}} {{timeDiffStr}} ago by
+      <a href="https://github.com/{{user.login}}" class="issue-link">{{user.login}}</a>
+    </span>
+  </mat-list-item>
+</ng-container>
+
+<ng-container *ngIf="loading">
+  <mat-list-item [disableRipple]="true" class="issue-skeleton">
+  </mat-list-item>
+</ng-container>

@@ -2,12 +2,14 @@
   <mat-nav-list>
     <ng-container *ngFor="let issue of issues; last as isLastItem">
       <app-issue-list-entry
+        [loading]="issuesLoading"
         [issueNumber]="issue.number"
         [issueTitle]="issue.title"
         [issueUrl]="'#'"
         [user]="issue.user"
         [createdAt]="issue.created_at"
         [closedAt]="issue.closed_at"
+        [commentsNum]="issue.comments"
         [labels]="issue.labels">
       </app-issue-list-entry>
       <mat-divider *ngIf="!isLastItem"></mat-divider>

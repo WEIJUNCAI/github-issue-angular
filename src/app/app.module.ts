@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 import { MatImportsModule } from './imports/mat-imports.module';
 
@@ -17,7 +18,8 @@ import { IssueListComponent } from './issue-list/issue-list.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MatImportsModule
+    MatImportsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -6,16 +6,18 @@ import { getTimeDiffFromNow } from '../utils/time.util';
 @Component({
   selector: 'app-issue-list-entry',
   templateUrl: './issue-list-entry.component.html',
-  styleUrls: ['./issue-list-entry.component.css']
+  styleUrls: ['./issue-list-entry.component.scss']
 })
 export class IssueListEntryComponent implements OnInit {
 
+  @Input() loading : boolean;
   @Input() issueUrl : string;
   @Input() issueTitle : string;
   @Input() issueNumber : number;
   @Input() createdAt : string;
   @Input() closedAt : string;
   @Input() user : User;
+  @Input() commentsNum : number;
   @Input() labels : Label[];
 
   icon : string;
@@ -27,7 +29,7 @@ export class IssueListEntryComponent implements OnInit {
 
   ngOnInit() {
     if(this.closedAt){
-      this.icon = "done";
+      this.icon = "check_circle_outline";
       this.timeDiffStr = getTimeDiffFromNow(this.closedAt);
       this.actionVerb = "was closed";
     } else {
