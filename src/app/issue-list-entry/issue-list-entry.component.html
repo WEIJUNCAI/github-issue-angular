@@ -3,7 +3,7 @@
     <mat-icon [ngClass]="{'issue-open-icon': !closedAt, 'issue-closed-icon': closedAt}" matListIcon> 
       {{icon}} 
     </mat-icon>
-    <a matLine href="issueUrl"><strong>{{issueTitle}}</strong></a>
+    <a matLine [href]="issueUrl"><strong>{{issueTitle}}</strong></a>
     <mat-chip-list *ngIf="labels && labels.length">
       <mat-chip *ngFor="let label of labels" color="accent">
         <small>{{label.name}}</small>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { Issue } from '../shared/issue.model'
 import { IssueService } from '../services/issue.service';
@@ -13,6 +13,9 @@ export class IssueListComponent implements OnInit {
   @Input() owner: string;
   @Input() repo: string;
 
+  @Output() loadingStart : EventEmitter<any> = new EventEmitter();
+  @Output() loadingComplete : EventEmitter<any> = new EventEmitter();
+
   issues: Issue[];
   issuesLoading: boolean = true;
 
@@ -21,10 +24,12 @@ export class IssueListComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.loadingStart.emit();
     this.issueService.getIssues(this.owner, this.repo)
       .subscribe(data => {
         this.issues = data;
         this.issuesLoading = false;
+        this.loadingComplete.emit();
       });
   }
 
