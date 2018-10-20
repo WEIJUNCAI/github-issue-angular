@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   imports: [
@@ -12,14 +13,16 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatIconModule,
     MatDividerModule,
     MatChipsModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatPaginatorModule
   ],
   exports: [
     MatListModule,
     MatIconModule,
     MatDividerModule,
     MatChipsModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatPaginatorModule
   ]
 })
 export class MatImportsModule { }

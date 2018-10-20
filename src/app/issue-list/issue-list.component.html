@@ -2,7 +2,7 @@
   <mat-nav-list>
     <ng-container *ngFor="let issue of issues; last as isLastItem">
       <app-issue-list-entry
-        [loading]="issuesLoading"
+        [loading]="loading"
         [issueNumber]="issue.number"
         [issueTitle]="issue.title"
         [issueUrl]="'#'"

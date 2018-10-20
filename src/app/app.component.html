@@ -1,10 +1,4 @@
-<mat-progress-bar *ngIf="showProgressBar" class="sticky"
-  mode="indeterminate" color="accent">
-</mat-progress-bar>
-
-<app-issue-list
+<app-issue-list-tab
   [owner]="'angular'"
-  [repo]="'angular'"
-  (loadingStart)="onIssueLoadingStart()"
-  (loadingComplete)="onIssueLoadingComplete()">
-</app-issue-list>
+  [repo]="'angular'">
+</app-issue-list-tab>

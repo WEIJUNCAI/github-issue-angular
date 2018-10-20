@@ -5,14 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent { 
-  showProgressBar : boolean = false;
-
-  onIssueLoadingStart() {
-    this.showProgressBar = true;
-  }
-
-  onIssueLoadingComplete() {
-    this.showProgressBar = false;
-  }
-}
+export class AppComponent { }

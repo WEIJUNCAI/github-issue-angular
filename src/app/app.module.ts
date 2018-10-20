@@ -8,12 +8,14 @@ import { MatImportsModule } from './imports/mat-imports.module';
 import { AppComponent } from './app.component';
 import { IssueListEntryComponent } from './issue-list-entry/issue-list-entry.component';
 import { IssueListComponent } from './issue-list/issue-list.component';
+import { IssueListTabComponent } from './issue-list-tab/issue-list-tab.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     IssueListEntryComponent,
-    IssueListComponent
+    IssueListComponent,
+    IssueListTabComponent
   ],
   imports: [
     BrowserModule,
