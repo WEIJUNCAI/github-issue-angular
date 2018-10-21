@@ -1,1 +1,0 @@
-export const REMOTE_API_ROOT = "https://api.github.com";

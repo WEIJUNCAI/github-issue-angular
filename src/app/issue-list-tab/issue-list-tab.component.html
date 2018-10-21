@@ -3,8 +3,17 @@
 </mat-progress-bar>
 
 <app-issue-list
+  class="container"
   [owner]="owner"
   [repo]="repo"
   [issues]="issues"
   [loading]="issuesLoading">
 </app-issue-list>
+
+<mat-paginator
+  [length]="issueCount"
+  [pageIndex]="pageIndex"
+  [pageSize]="perPageCount"
+  [pageSizeOptions]="[5,10,30]"
+  (page)="onPageChange($event)"> 
+</mat-paginator>

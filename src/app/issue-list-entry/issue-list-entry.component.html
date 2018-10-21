@@ -1,4 +1,4 @@
-<ng-container *ngIf="!loading">
+<ng-container *ngIf="!loading; else elseBlock">
   <mat-list-item>
     <mat-icon [ngClass]="{'issue-open-icon': !closedAt, 'issue-closed-icon': closedAt}" matListIcon> 
       {{icon}} 
@@ -20,7 +20,7 @@
   </mat-list-item>
 </ng-container>
 
-<ng-container *ngIf="loading">
+<ng-template #elseBlock>
   <mat-list-item [disableRipple]="true" class="issue-skeleton">
   </mat-list-item>
-</ng-container>
+</ng-template>
