@@ -20,14 +20,14 @@ interface IssueResponseData {
 })
 export class IssueService {
 
-  constructor(private httpClient : HttpClient) { }
+  constructor(private httpClient: HttpClient) { }
 
-  private getRawHttpResponse(owner : string, repo : string, page : number, perPageItem : number) {
+  private getRawHttpResponse(owner: string, repo: string, page: number, perPageItem: number) {
     const fullRequestUrl = `${REMOTE_API_ROOT}/repos/${owner}/${repo}/issues?per_page=${perPageItem}&page=${page}`;
     return this.httpClient.get(fullRequestUrl, { observe: "response" });
   }
 
-  getIssues(owner : string, repo : string, page : number = 1, perPageItem : number = DEFAULT_PER_PAGE_ITEM_COUNT) 
+  getIssues(owner: string, repo: string, page: number = 1, perPageItem: number = DEFAULT_PER_PAGE_ITEM_COUNT)
     : Observable<Issue[]> {
     return this.getRawHttpResponse(owner, repo, page, perPageItem).pipe(
       map(response => response.body as Issue[])
@@ -35,11 +35,15 @@ export class IssueService {
     // return of(REACT_TEST_ISSUES);
   }
 
-  getIssuesAndItemCount(owner : string, repo : string, page : number = 1, perPageItem : number = DEFAULT_PER_PAGE_ITEM_COUNT) 
+  getIssuesAndItemCount(owner: string, repo: string, page: number = 1, perPageItem: number = DEFAULT_PER_PAGE_ITEM_COUNT)
     : Observable<IssueResponseData> {
+
+      page = page ? page : 1;
+      perPageItem = perPageItem ? perPageItem : DEFAULT_PER_PAGE_ITEM_COUNT;
+      
     return this.getRawHttpResponse(owner, repo, page, perPageItem).pipe(
       map(response => ({
-        issues: response.body as Issue[], 
+        issues: response.body as Issue[],
         itemCount: getItemCount(response.headers.get("link"))
       }))
     );
