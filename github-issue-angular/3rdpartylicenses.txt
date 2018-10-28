@@ -501,6 +501,9 @@ MIT
 
 @angular/material/tooltip
 
+@angular/router
+MIT
+
 @angular/material/progress-bar
 
 @angular/material/divider
